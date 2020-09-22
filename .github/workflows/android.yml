@@ -32,7 +32,7 @@ jobs:
         name: reports
         path: app/build/reports
     - name: Upload test results
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: tests-results
-        path: app/build/test-results
+        path: app/build/test-results/*.xml

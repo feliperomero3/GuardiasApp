@@ -35,4 +35,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: tests-results
-        path: app/build/test-results/*.xml
+        path: app/build/test-results/**/*.xml

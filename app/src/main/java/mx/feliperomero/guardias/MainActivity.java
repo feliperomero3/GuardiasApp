@@ -50,10 +50,12 @@ public class MainActivity extends AppCompatActivity {
      * from a local content provider or remote server.
      */
     private void initDataset() {
-        mDataset = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            mDataset[i] = "This is element #" + i;
-        }
+        mDataset = new String[5];
+        mDataset[0] = "22/09/2020 \nME Cabo \n88, 89, 90, 91, 92";
+        mDataset[1] = "22/09/2020 \nThe Giggling Marlin \n93, 94, 95, 96, 97";
+        mDataset[2] = "22/09/2020 \nRecorrido \n1, 2, 3, 4, 5";
+        mDataset[3] = "22/09/2020 \nSitio \n6, 7, 8, 9, 10";
+        mDataset[4] = "22/09/2020 \nMezquite \n11, 12, 13, 14, 15";
     }
 
     @Override

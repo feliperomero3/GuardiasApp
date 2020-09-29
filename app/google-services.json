@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "467931238375",
+    "firebase_url": "https://mx-feliperomero-guardias.firebaseio.com",
+    "project_id": "mx-feliperomero-guardias",
+    "storage_bucket": "mx-feliperomero-guardias.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467931238375:android:c01212f63a039efa28b742",
+        "android_client_info": {
+          "package_name": "mx.feliperomero.guardias"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467931238375-80mdchtmasm1fa46g6l7o40k03gp45t6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1HiaM91UyBqCqi9bGnx0QtwXZK5nDGfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467931238375-80mdchtmasm1fa46g6l7o40k03gp45t6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

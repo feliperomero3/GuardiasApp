@@ -52,10 +52,6 @@ public class Guardia implements Serializable {
 
     @Override
     public String toString() {
-        return "Guardia{" +
-                "date=" + date +
-                ", site='" + site + '\'' +
-                ", units='" + units + '\'' +
-                '}';
+        return date + "\n" + site + "\n" + units;
     }
 }

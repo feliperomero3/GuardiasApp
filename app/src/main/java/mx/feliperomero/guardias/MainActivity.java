@@ -64,10 +64,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Guardia guardia = snapshot.getValue(Guardia.class);
-                Log.d("Guardia: ", guardia.getSite());
-                guardia.setId(snapshot.getKey());
-                mGuardias.add(guardia.toString());
-                mAdapter.notifyItemInserted(mGuardias.size() - 1);
+                if (guardia != null) {
+                    Log.d("onChildAdded", snapshot.toString());
+                    guardia.setId(snapshot.getKey());
+                    mGuardias.add(guardia.toString());
+                    mAdapter.notifyItemInserted(mGuardias.size() - 1);
+                }
             }
 
             @Override

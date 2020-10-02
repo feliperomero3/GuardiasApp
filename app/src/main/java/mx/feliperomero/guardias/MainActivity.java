@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        initDataset();
-
         initFirebase();
 
         mRecyclerView = findViewById(R.id.my_recycler_view);
@@ -92,19 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    /**
-     * Generates Strings for RecyclerView's adapter. This data would usually come
-     * from a local content provider or remote server.
-     */
-    private void initDataset() {
-        mDataset = new String[5];
-        mDataset[0] = "22/09/2020 \nME Cabo \n88, 89, 90, 91, 92";
-        mDataset[1] = "22/09/2020 \nThe Giggling Marlin \n93, 94, 95, 96, 97";
-        mDataset[2] = "22/09/2020 \nRecorrido \n1, 2, 3, 4, 5";
-        mDataset[3] = "22/09/2020 \nSitio \n6, 7, 8, 9, 10";
-        mDataset[4] = "22/09/2020 \nMezquite \n11, 12, 13, 14, 15";
     }
 
     @Override

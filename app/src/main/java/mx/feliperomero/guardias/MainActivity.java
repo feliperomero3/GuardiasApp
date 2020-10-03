@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -23,13 +24,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int DATASET_COUNT = 50;
+    private static final String TAG = "MainActivity";
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private String[] mDataset;
     private DatabaseReference mDatabase;
     private ArrayList<String> mGuardias = new ArrayList<>();
+    private ArrayList<String> mGuardiasIds = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +65,11 @@ public class MainActivity extends AppCompatActivity {
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Log.d(TAG, "onChildAdded: " + snapshot.toString());
                 Guardia guardia = snapshot.getValue(Guardia.class);
                 if (guardia != null) {
-                    Log.d("onChildAdded", snapshot.toString());
                     guardia.setId(snapshot.getKey());
+                    mGuardiasIds.add(snapshot.getKey());
                     mGuardias.add(guardia.toString());
                     mAdapter.notifyItemInserted(mGuardias.size() - 1);
                 }
@@ -74,22 +77,55 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Log.d(TAG, "onChildChanged: " + snapshot.getKey());
 
+                Guardia changedGuardia = snapshot.getValue(Guardia.class);
+                int guardiaIndex = mGuardiasIds.indexOf(snapshot.getKey());
+                if (guardiaIndex > -1) {
+                    if (changedGuardia != null) {
+                        mGuardias.set(guardiaIndex, changedGuardia.toString());
+                        mAdapter.notifyItemChanged(guardiaIndex);
+                    }
+                } else {
+                    Log.w(TAG, "onChildChanged:unknown_child: " + snapshot.getKey());
+                }
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                Log.d(TAG, "onChildRemoved: " + snapshot.getKey());
 
+                int guardiaIndex = mGuardiasIds.indexOf(snapshot.getKey());
+                if (guardiaIndex > -1) {
+                    mGuardiasIds.remove(guardiaIndex);
+                    mGuardias.remove(guardiaIndex);
+                    mAdapter.notifyItemRemoved(guardiaIndex);
+                } else {
+                    Log.w(TAG, "onChildRemoved:unknown_child: " + snapshot.getKey());
+                }
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Log.d(TAG, "onChildMoved: " + snapshot.getKey());
 
+                Guardia movedGuardia = snapshot.getValue(Guardia.class);
+                int guardiaIndex = mGuardiasIds.indexOf(snapshot.getKey());
+                if (guardiaIndex > -1) {
+                    if (movedGuardia != null) {
+                        mGuardias.set(guardiaIndex, movedGuardia.toString());
+                        mAdapter.notifyItemChanged(guardiaIndex);
+                    }
+                } else {
+                    Log.w(TAG, "onChildMoved:unknown_child: " + snapshot.getKey());
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d(TAG, "onCancelled: " + error.toException());
+                Toast.makeText(MainActivity.this, "Failed to load guardias",
+                        Toast.LENGTH_LONG).show();
             }
         });
     }

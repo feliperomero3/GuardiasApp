@@ -2,7 +2,7 @@
 
 [![GuardiasApp CI][ci-status-badge]][ci-status]
 
-Listado de Unidades en cada Sitio de Guardia de acuerdo a las fechas establecidas en el rol de Guardias.
+Listado de Unidades en cada Sitio de guardia de acuerdo a las fechas establecidas en el Rol de Guardias.
 
 ## License
 

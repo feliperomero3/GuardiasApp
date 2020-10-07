@@ -4,6 +4,12 @@
 
 Listado de Unidades en cada Sitio de guardia de acuerdo a las fechas establecidas en el Rol de Guardias.
 
+## Prerequisites
+
+- Android Studio 3.6
+- Android SDK API 29
+- Firebase Project with Realtime Database
+
 ## License
 
 Copyright 2020 Felipe Romero
